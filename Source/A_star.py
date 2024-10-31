@@ -1,7 +1,8 @@
 from utils import *
 
-# A* Search (UCS) Algorithm
-def a_star(problem):
+# A* Search Algorithm
+def a_star(problem, output_content):
+
     start_node = Node(problem.initial_state)
     algorithm_name = 'A*'
 
@@ -11,7 +12,6 @@ def a_star(problem):
     frontier = [(0, start_node)]
     explored = {start_node: (0, None)}
     
-    total_weight_pushed = 0 
     nodes_generated = 0  
 
     while frontier:
@@ -19,7 +19,7 @@ def a_star(problem):
 
         if problem.goal_test(node.state):
             
-            return process_solution(node, start_time, start_node, algorithm_name, nodes_generated, problem)
+            return process_solution(node, start_time, start_node, algorithm_name, nodes_generated, problem, output_content)
 
         for action in problem.actions(node.state):
             child = child_node(problem, node, action, use_heuristic=True)
